@@ -28,9 +28,12 @@ Here's a coffeescript snippet that implements the approach above. It has a coupl
 class @GoogleAnalytics
 
   @load: ->
+    analyticsId = GoogleAnalytics.analyticsId()
+    return unless analyticsId
+
     # Google Analytics depends on a global _gaq array. window is the global scope.
     window._gaq = []
-    window._gaq.push ["_setAccount", GoogleAnalytics.analyticsId()]
+    window._gaq.push ["_setAccount", analyticsId]
 
     # Create a script element and insert it in the DOM
     ga = document.createElement("script")
